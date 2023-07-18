@@ -138,6 +138,8 @@ class AppsFragment : MainFragment(), AppsAdapter.OnItemClickListener,
         if (isChecked) HailData.addCheckedApp(packageName)
         else HailData.removeCheckedApp(packageName)
         buttonView.isChecked = HailData.isChecked(packageName)
+
+        AppManager.setAppFrozen(packageName, buttonView.isChecked);
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
