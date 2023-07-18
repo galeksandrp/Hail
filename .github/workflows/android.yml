@@ -3,7 +3,7 @@ name: Android CI
 on:
   push:
     branches:
-      - master
+      - '**'
     paths-ignore:
       - '**.md'
       - 'fastlane/**'
@@ -32,8 +32,25 @@ jobs:
           java-version: '17'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      - name: Create gradle.properties
+        run: |
+          echo "storeFile=$GITHUB_WORKSPACE/key.store
+          storePassword=${{ secrets.SIGNING_STORE_PASSWORD }}
+          keyAlias=${{ secrets.SIGNING_KEY_ALIAS }}
+          keyPassword=${{ secrets.SIGNING_KEY_PASSWORD }}" > $GITHUB_WORKSPACE/signing.properties
+
+      - name: Create gradle.properties
+        run: |
+          ls signing.properties
+
       - name: Build with Gradle
         run: ./gradlew assembleDebug
+
+      - name: Create gradle.properties
+        run: |
+          find -type f -name '*.apk'
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
