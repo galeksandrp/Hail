@@ -41,7 +41,7 @@ class PagerAdapter(private val selectedList: List<AppInfo>) :
                         it,
                         myUserId,
                         this,
-                        HailData.grayscaleIcon && info.state == AppInfo.STATE_FROZEN
+                        HailData.grayscaleIcon && info.state != AppInfo.STATE_FROZEN
                     )
                 } ?: run {
                     setImageDrawable(context.packageManager.defaultActivityIcon)

@@ -71,7 +71,7 @@ class AppsAdapter : ListAdapter<ApplicationInfo, AppsAdapter.ViewHolder>(DIFF) {
 
             binding.appIcon.apply {
                 loadIconJob = AppIconCache.loadIconBitmapAsync(
-                    context, info, HPackages.myUserId, this, HailData.grayscaleIcon && frozen
+                    context, info, HPackages.myUserId, this, HailData.grayscaleIcon && !frozen
                 )
             }
             binding.appName.apply {

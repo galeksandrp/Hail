@@ -57,3 +57,9 @@ jobs:
           name: Debug
           path: app/build/outputs/apk/debug
           retention-days: 7
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: vlatest
+          files: app/build/outputs/apk/debug/*.apk
